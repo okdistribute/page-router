@@ -53,6 +53,5 @@ ln -s index.html 404.html
 ```
 
 ### TODO
-  * override render function to use something other than handlebars
   * handle 404s correctly. make the 404.html trick for gh-pages not be necessary
 

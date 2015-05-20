@@ -4,7 +4,8 @@ var mustache = require('mustache').render
 
 module.exports = templater
 
-function templater (contentSelector, routes) {
+function templater (contentSelector, routes, renderer) {
+  if (!renderer) renderer = musatche
   if (!contentSelector) throw new Error('contentSelector required')
   if (!routes || !routes.length) throw new Error('routes should be a list of route objects')
 
@@ -21,7 +22,7 @@ function templater (contentSelector, routes) {
 
   function render(ctx, next) {
     var target = dom(contentSelector)
-    var compiled = mustache(ctx.template, ctx.data)
+    var compiled = renderer(ctx.template, ctx.data)
     target.html(compiled)
     ctx.onrender(ctx.params)
   }

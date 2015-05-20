@@ -41,7 +41,6 @@ function makePage(route, cb) {
     if (!route.data) route.data = function (params, cb) { cb({}) }
 
     route.data(ctx.params, function (data) {
-      console.log(data)
       ctx.template = route.template
       ctx.data = data
       if (route.onrender) ctx.onrender = route.onrender

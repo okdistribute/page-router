@@ -1,0 +1,23 @@
+{
+  "name": "a-simple-templater",
+  "version": "1.0.0",
+  "description": "make a simple templated website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/karissa/a-simple-templater.git"
+  },
+  "keywords": [
+    "templates",
+    "node.js"
+  ],
+  "author": "Karissa McKelvey <karissa@karissamck.com> (http://karissamck.com/)",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/karissa/a-simple-templater/issues"
+  },
+  "homepage": "https://github.com/karissa/a-simple-templater"
+}

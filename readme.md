@@ -2,7 +2,7 @@
 
 [![NPM](https://nodei.co/npm/a-simple-templater.png)](https://nodei.co/npm/a-simple-templater/)
 
-Make your routes. Uses handlebars templates by default.
+Make your routes. Uses mustache templates by default.
 
 Your index.js
 ```js
@@ -10,6 +10,15 @@ var templater = require('a-simple-templater');
 var fs = require('fs')
 
 var routes = [
+  {
+    url: '/',
+    template: '<h1>{{title}}</h1>',
+    data: function (params, cb)  {
+      cb({
+        title: 'hey whats up'
+      })
+    }
+  },
   {
     url: '/blog/:id',
     template: fs.readFileSync('templates/blog.html').toString(),
@@ -21,15 +30,6 @@ var routes = [
     },
     onrender: function (params) {
       console.log('hello world', params)
-    }
-  },
-  {
-    url: '/',
-    template: '<h1>{{title}}</h1>',
-    data: function (params, cb)  {
-      cb({
-        title: 'hey whats up'
-      })
     }
   }
 ]
@@ -50,6 +50,15 @@ Your index.html
 A trick for gh-pages:
 ```
 ln -s index.html 404.html
+```
+
+Overriding the default rendering engine (mustache) to use handlebars, for example:
+```js
+var Handlebars = require('handlebars')
+templater('#content', routes, function (source, data) {
+  var template = Handlebars.compile(source)
+  return template(data)
+})
 ```
 
 ### TODO

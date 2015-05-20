@@ -9,6 +9,7 @@ A trick for gh-pages:
 ln -s index.html 404.html
 ```
 
+Your index.js
 ```js
 var templater = require('a-simple-templater');
 var fs = require('fs')
@@ -41,6 +42,7 @@ var routes = [
 templater('#content', routes)
 ```
 
+Your index.html
 ```html
 <html>
 <body>
@@ -52,4 +54,5 @@ templater('#content', routes)
 
 ### TODO
   * override render function to use something other than handlebars
+  * handle 404s correctly. make the 404.html trick for gh-pages not be necessary
 

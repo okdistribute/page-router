@@ -20,14 +20,14 @@ function templater (contentSelector, routes, renderer) {
     next()
   }
 
-  function render(ctx, next) {
+  function render (ctx, next) {
     var target = dom(contentSelector)
     var compiled = renderer(ctx.template, ctx.data)
     target.html(compiled)
-    ctx.onrender(ctx.params)
+    ctx.onrender(ctx.params, ctx.data)
   }
 
-  function createRoutes(i) {
+  function createRoutes (i) {
     if (i === routes.length) return
     else makePage(routes[i], function () {
       createRoutes(i+1)
@@ -36,7 +36,7 @@ function templater (contentSelector, routes, renderer) {
   page()
 }
 
-function makePage(route, cb) {
+function makePage (route, cb) {
   page(route.url, function (ctx, next) {
     if (!route.data) route.data = function (params, cb) { cb({}) }
 

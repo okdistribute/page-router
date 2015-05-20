@@ -15,21 +15,21 @@ var routes = [
     template: '<h1>{{title}}</h1>',
     data: function (params, cb)  {
       cb({
-        title: 'hey whats up'
+        title: 'hey whats up ' + params.id
       })
     }
   },
   {
-    url: '/blog/:id',
+    url: '/hello/:id',
     template: fs.readFileSync('templates/blog.html').toString(),
     data: function (params, cb) {
       cb({
-        title: 'hello',
-        text: 'world'
+        greeting: 'hello',
+        place: 'world'
       })
     },
-    onrender: function (params) {
-      console.log('hello world', params)
+    onrender: function (params, data) {
+      console.log('hello', data.place, params.id)
     }
   }
 ]

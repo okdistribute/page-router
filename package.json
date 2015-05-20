@@ -1,6 +1,6 @@
 {
   "name": "a-simple-templater",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "make a simple templated website",
   "main": "index.js",
   "scripts": {

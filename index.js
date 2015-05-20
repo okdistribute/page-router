@@ -1,6 +1,5 @@
 var page = require('page')
 var dom = require('dom')
-var fs = require('fs')
 var mustache = require('mustache').render
 
 module.exports = templater

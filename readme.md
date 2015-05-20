@@ -4,11 +4,6 @@
 
 Make your routes. Uses handlebars templates by default.
 
-A trick for gh-pages:
-```
-ln -s index.html 404.html
-```
-
 Your index.js
 ```js
 var templater = require('a-simple-templater');
@@ -50,6 +45,11 @@ Your index.html
   <script type="text/javascript" src="/bundle.js"></script>
 </body>
 </html>
+```
+
+A trick for gh-pages:
+```
+ln -s index.html 404.html
 ```
 
 ### TODO

@@ -38,6 +38,8 @@ function templater (contentSelector, routes) {
 
 function makePage(route, cb) {
   page(route.url, function (ctx, next) {
+    if (!route.data) route.data = function (params, cb) { cb({}) }
+
     route.data(ctx.params, function (data) {
       ctx.template = route.template
       ctx.data = data

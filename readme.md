@@ -47,12 +47,14 @@ Your index.html
 </html>
 ```
 
-A trick for gh-pages:
+### A trick for gh-pages:
+
+Rename index.html to 404.html and then symlink index to 404.
 ```
-ln -s index.html 404.html
+ln -s 404.html index.html
 ```
 
-Overriding the default rendering engine (mustache) to use handlebars, for example:
+### Overriding the default rendering engine (mustache) to use handlebars, for example:
 ```js
 var Handlebars = require('handlebars')
 templater('#content', routes, function (source, data) {

@@ -14,22 +14,24 @@ var routes = [
     url: '/',
     template: '<h1>{{title}}</h1>',
     data: function (params, cb)  {
+      // get data to be rendered in the template
       cb({
-        title: 'hey whats up ' + params.id
+        title: 'hey whats up'
       })
     }
   },
   {
-    url: '/hello/:id',
+    url: '/blog/:id',
     template: fs.readFileSync('templates/blog.html').toString(),
     data: function (params, cb) {
-      cb({
-        greeting: 'hello',
-        place: 'world'
+      // get the data to be rendered, to the backend, maybe? :)
+      get_post(params.id, function (err, post) {
+        cb({ post: post })
       })
     },
     onrender: function (params, data) {
-      console.log('hello', data.place, params.id)
+      // do something when the page loads
+      console.log('hello', params.id, data.post)
     }
   }
 ]
@@ -62,6 +64,9 @@ templater('#content', routes, function (source, data) {
   return template(data)
 })
 ```
+
+### turn off auto-scroll
+When you click, the templater will automatically scroll to the top (see line 28 of index.js). Use `scroll: false` in any route definition to turn this off.
 
 ### TODO
   * handle 404s correctly. make the 404.html trick for gh-pages not be necessary

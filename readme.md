@@ -1,42 +1,42 @@
-# a-simple-templater
+# page-router
 
-[![NPM](https://nodei.co/npm/a-simple-templater.png)](https://nodei.co/npm/a-simple-templater/)
+[![NPM](https://nodei.co/npm/page-router.png)](https://nodei.co/npm/page-router/)
 
-Make your routes. Uses mustache templates by default.
+Powerfully simple client-side ajax template router built on page.js.
 
-Your index.js
+**index.js**
 ```js
-var templater = require('a-simple-templater');
+var router = require('page-router');
 var fs = require('fs')
 
 var routes = [
   {
     url: '/',
     template: '<h1>{{title}}</h1>',
-    data: function (params, cb)  {
+    data: function (params, render)  {
       // get data to be rendered in the template
-      cb({
-        title: 'hey whats up'
+      render({
+        title: 'hey whats up' // this object will be available in the template
       })
     }
   },
   {
-    url: '/blog/:id',
-    template: fs.readFileSync('templates/blog.html').toString(),
-    data: function (params, cb) {
-      // get the data to be rendered, to the backend, maybe? :)
-      get_post(params.id, function (err, post) {
-        cb({ post: post })
+    url: '/post/:id',
+    template: '<h1>{{post.title}}</h1>'
+    data: function (params, render) {
+      // your route to get data. do some stuff
+      get_post(params.id, function (err, data) {
+        render({ post: post })
       })
     },
     onrender: function (params, data) {
-      // do something when the page loads
+      // do something after the page is rendered
       console.log('hello', params.id, data.post)
     }
   }
 ]
 
-templater('#content', routes)
+router('#content', routes)
 ```
 
 Your index.html
@@ -49,7 +49,25 @@ Your index.html
 </html>
 ```
 
-### A trick for gh-pages:
+### Using browserify
+
+If you use [browserify](http://github.com/substack/browserify) (recommended), you can use `fs.readFileSync(template_path).toString()` to load the file into the client-side javascript bundle.
+
+Example:
+```json
+var fs = require('fs')
+
+var routes = [
+{
+  url: '/post/:id',
+  template: fs.readFileSync('templates/post.html').toString()
+  onrender: function (params, data) {
+    console.log('hello', params.id, data.post)
+  }
+]
+```
+
+### Use with gh-pages
 
 Rename index.html to 404.html and then symlink index to 404.
 ```
@@ -59,14 +77,14 @@ ln -s 404.html index.html
 ### Overriding the default rendering engine (mustache) to use handlebars, for example:
 ```js
 var Handlebars = require('handlebars')
-templater('#content', routes, function (source, data) {
+router('#content', routes, function (source, data) {
   var template = Handlebars.compile(source)
   return template(data)
 })
 ```
 
 ### turn off auto-scroll
-When you click, the templater will automatically scroll to the top (see line 28 of index.js). Use `scroll: false` in any route definition to turn this off.
+When you click, the router will automatically scroll to the top (see line 28 of index.js). Use `scroll: false` in any route definition to turn this off.
 
 ### TODO
   * handle 404s correctly. make the 404.html trick for gh-pages not be necessary

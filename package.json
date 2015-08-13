@@ -1,25 +1,33 @@
 {
-  "name": "a-simple-templater",
+  "name": "page-router",
   "version": "1.0.8",
-  "description": "make a simple templated website",
+  "description": "Powerfully simple client-side ajax template router built on page.js.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/karissa/a-simple-templater.git"
+    "url": "https://github.com/karissa/page-router.git"
   },
   "keywords": [
     "templates",
-    "node.js"
+    "node.js",
+    "page.js",
+    "page",
+    "ajax",
+    "client",
+    "client side",
+    "template",
+    "router",
+    "browserify"
   ],
   "author": "Karissa McKelvey <karissa@karissamck.com> (http://karissamck.com/)",
   "license": "BSD",
   "bugs": {
-    "url": "https://github.com/karissa/a-simple-templater/issues"
+    "url": "https://github.com/karissa/page-router/issues"
   },
-  "homepage": "https://github.com/karissa/a-simple-templater",
+  "homepage": "https://github.com/karissa/page-router",
   "dependencies": {
     "dom": "0.0.3",
     "mustache": "^2.0.0",

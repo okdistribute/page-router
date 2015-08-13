@@ -1,8 +1,8 @@
 # page-router
 
-[![NPM](https://nodei.co/npm/page-router.png)](https://nodei.co/npm/page-router/)
-
 Powerfully simple client-side ajax template router built on page.js.
+
+[![NPM](https://nodei.co/npm/page-router.png)](https://nodei.co/npm/page-router/)
 
 **index.js**
 ```js
@@ -54,7 +54,7 @@ Your index.html
 If you use [browserify](http://github.com/substack/browserify) (recommended), you can use `fs.readFileSync(template_path).toString()` to load the file into the client-side javascript bundle.
 
 Example:
-```json
+```js
 var fs = require('fs')
 
 var routes = [

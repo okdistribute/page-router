@@ -30,7 +30,7 @@ var routes = [
       })
     },
     onrender: function (params, data) {
-      // do something after the page is rendered
+      // anything you can do with Ractive.js
       console.log('hello', params.id, data.post)
     }
   }
@@ -72,15 +72,6 @@ var routes = [
 Rename index.html to 404.html and then symlink index to 404.
 ```
 ln -s 404.html index.html
-```
-
-### Overriding the default rendering engine (mustache) to use handlebars, for example:
-```js
-var Handlebars = require('handlebars')
-router('#content', routes, function (source, data) {
-  var template = Handlebars.compile(source)
-  return template(data)
-})
 ```
 
 ### turn off auto-scroll

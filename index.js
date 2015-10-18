@@ -5,27 +5,26 @@ var mustache = require('mustache').render
 module.exports = templater
 
 function templater (contentSelector, routes, renderer) {
-  if (!renderer) renderer = mustache
+  if (!renderer) renderer = function (ctx) {
+    var target = dom(contentSelector)
+    var compiled = mustache(ctx.template, ctx.data)
+    target.html(compiled)
+    ctx.onrender(ctx.params, ctx.data)
+    if (ctx.scroll) window.scrollTo(0,0)
+  }
+
   if (!contentSelector) throw new Error('contentSelector required')
   if (!routes || !routes.length) throw new Error('routes should be a list of route objects')
 
   page('*', index)
   createRoutes(0)
-  page('*', render)
+  page('*', renderer)
 
   function index (ctx, next) {
     // default for all pages
     ctx.onrender = function () {}
     ctx.data = {}
     next()
-  }
-
-  function render (ctx, next) {
-    var target = dom(contentSelector)
-    var compiled = renderer(ctx.template, ctx.data)
-    target.html(compiled)
-    ctx.onrender(ctx.params, ctx.data)
-    if (ctx.scroll) window.scrollTo(0,0)
   }
 
   function createRoutes (i) {
